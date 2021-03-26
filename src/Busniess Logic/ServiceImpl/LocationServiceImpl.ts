@@ -11,8 +11,14 @@ export class LocationServiceImpl implements LocationService {
     }
 
 
-    createLocation(location: LocationModel): void {
-        this.locationDAL.createLocation(location);
+    createLocation(newLocation: LocationModel): void {
+        let getAllLocation: LocationModel[] = this.locationDAL.getAllLocation();
+        getAllLocation.forEach((location:LocationModel) => {
+            if(newLocation.address === location.address){
+                throw new Error('the location is already exists');
+            }
+        });
+        this.locationDAL.createLocation(newLocation);
     }
 
     deleteLocation(id: number): void {

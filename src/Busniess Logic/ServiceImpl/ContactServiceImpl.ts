@@ -8,7 +8,6 @@ export class ContactServiceImpl implements ContactService{
 
     constructor(contactDAL: ContactDAL){
         this.contactDAL= contactDAL;
-
     }
 
     createContact(contact: ContactModel): void {

@@ -13,9 +13,6 @@ export class ClientMeetingServiceImpl implements ClientMeetingService {
 
     createClientMeeting(clientMeeting: ClientMeetingModel): void {
         let dateTime = new Date().getTime();
-        console.log('ido' + clientMeeting.appointment);
-        console.log('time' + dateTime);
-
         if(clientMeeting.appointment > dateTime){
             this.clientMeetingDAL.createClientMeeting(clientMeeting);
         }else{
@@ -30,12 +27,10 @@ export class ClientMeetingServiceImpl implements ClientMeetingService {
 
     updateClientMeeting(clientMeeting: ClientMeetingModel): void {
         let dateTime = new Date().getTime();
-        console.log('ido' + clientMeeting.appointment);
-        console.log('time' + dateTime);
         if(clientMeeting.appointment > dateTime){
             this.clientMeetingDAL.updateClientMeeting(clientMeeting);
         }else{
-            throw new Error('the appointment is not good');
+            throw new Error('the appointment is not good at update the client meeting');
         }
     }
 

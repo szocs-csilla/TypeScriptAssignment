@@ -10,8 +10,14 @@ export class ClientServiceImpl implements ClientService {
         this.clientDAL = clientDAL;
     }
 
-    createClient(client:ClientModel): void {
-        this.clientDAL.createClient(client);
+    createClient(newClient:ClientModel): void {
+        let getAllClient: ClientModel[] = this.getAllClient();
+        getAllClient.forEach((client: ClientModel) => {
+            if(newClient.taxNumber === client.taxNumber){
+                throw new Error('the Client is already exists');
+            }
+        });
+        this.clientDAL.createClient(newClient);
     }
 
     deleteClient(id: number): void {

@@ -40,7 +40,6 @@ http.createServer((request: any, response: any) => {
                 clientMeetingService.createClientMeeting(JSON.parse(body));
             } else if (request.url === '/contact') {
                 body = Buffer.concat(body).toString();
-                console.log("posttttt contact");
                 // validate body placeholder
                 contactService.createContact(JSON.parse(body));
             } else if (request.url === '/location') {
@@ -74,8 +73,6 @@ http.createServer((request: any, response: any) => {
             let queryData = urlLib.parse(request.url, true).query;
             if (request.url === '/client' && !queryData.id) {
                 let clients:ClientModel[] = clientService.getAllClient();
-                let esString = JSON.stringify(clients);
-                console.log("sending back:" + esString);
                 response.write(JSON.stringify(clients));
             }else if(request.url === '/client_meeting'&& !queryData.id){
                 let clientMeetings: ClientMeetingModel[] = clientMeetingService.getAllClientMeeting();
